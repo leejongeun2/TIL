@@ -4,7 +4,7 @@
 
   - [실습자료 따라하기](https://github.com/leejongeun2/TIL/blob/master/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4/markdown_practice_%EC%8B%A4%EC%8A%B5%EA%B3%BC%EC%A0%9C.md)
 
-  - [마크다운 정리 과제](https://github.com/leejongeun2/TIL/blob/master/마크다운/마크다운 정리 과제 .md)
+  - [마크다운 정리 과제](https://github.com/leejongeun2/TIL/blob/master/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4%20%EC%A0%95%EB%A6%AC%20%EA%B3%BC%EC%A0%9C%20.md)
 
     
 
