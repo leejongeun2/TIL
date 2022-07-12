@@ -36,7 +36,9 @@
 
 * [파이썬 시퀀스(튜플, 딕셔너리, 리스트, 레인지, 세트)](https://github.com/leejongeun2/TIL/blob/master/0711_python_1.md)
 
-* 코드업 알고리즘 시작(18문제)
+* [코드업 알고리즘 시작(18문제)](https://github.com/leejongeun2/TIL/tree/master/python)
+
+  
 
   
 

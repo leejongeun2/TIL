@@ -441,3 +441,19 @@ a = '1 2 3'
 print(a.split())
 ```
 
+
+
+### 로또 랜덤(랜덤인데 중복 없이 6개)
+
+```python
+import random
+numbers = range(1, 46)
+result = random.sample(number, 6)
+print(result)
+```
+
+
+
+✔️ 대괄호를 쓰는 건 인덱스, 키 접근 밖에 없고 나머지는 소괄호!
+
+✔️수업 마지막 6010, 6015 다시보기
