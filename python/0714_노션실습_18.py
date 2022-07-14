@@ -4,9 +4,9 @@ word = 'banana'
 cnt = {}
 for char in word:
     if char in cnt:
-        cnt[char] +=1
+        cnt[char] += 1 
     else:
         cnt[char] = 1
 
-for key, value in cnt.items():
+for key, value in cnt.items(): #주어진 사전의 키, 값 튜플 쌍의 목록을 표시하는 보기 개체
     print(key, value)

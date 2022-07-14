@@ -1,3 +1,5 @@
+# 모음의 갯수
+
 a = ['a', 'e', 'i', 'o', 'u']
 word = 'apple'
 count = 0
