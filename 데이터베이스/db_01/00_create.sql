@@ -178,3 +178,17 @@ select avg(height) '평균 키', avg(weight) '평균 몸무게' from healthcare 
 
 --10번-----------------------
 select is_drinking, smoking, avg(weight/((height*height)*0.0001)) from healthcare group by is_drinking, smoking
+
+
+
+--8/19(금)=======================================
+--특정 성씨별 가장 적은 나이
+select last_name, min(age) from users group by last_name
+
+--서브쿼리 다중행컬럼--
+--특정 성씨별로 가장 적은 나이 모두--
+select last_name, first_name, age from users where(last_name, age) in 
+(select last_name, min(age) from users group by last_name) order by last_name;
+
+
+
