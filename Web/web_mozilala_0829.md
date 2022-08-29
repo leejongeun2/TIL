@@ -205,7 +205,7 @@
 
 
 
-# [CSS](/Users/ijong-eun/Desktop/web/01_web기초.html)
+# [CSS](https://github.com/leejongeun2/Web/blob/master/01_web%EA%B8%B0%EC%B4%88.html)
 
 ---
 
