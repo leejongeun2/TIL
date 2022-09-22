@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lotto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .ball {
+            width: 10rem;
+            height: 10rem;
+            margin: .5rem;
+            background-color: yellow;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 10rem; /*line-height란 블록요소일 경우, 높이와 같은 값으로 설정 시 수직 중앙 정렬 됨*/
+            font-size:xx-large;
+            font-weight: bold;
+
+        }
+
+        .ball-container {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center">로또 추천 번호</h1>
+    <div>
+        <div class="ball-container">
+                <div class="ball">3</div>
+                <div class="ball">11</div>
+                <div class="ball">15</div>
+                <div class="ball">29</div>
+                <div class="ball">35</div>
+                <div class="ball">44</div>
+                <div class="ball">+</div>
+                <div class="ball">10</div>
+            </div>
+    </div>
+    <hr>
+    <div>
+        <div class="ball-container">
+            {% for i in lotto %}
+                <div class="ball">{{ i }}</div>
+            {% endfor %}
+            </div>
+    </div>
+        
+   
+    
+
+
+
+</body>
+</html>
