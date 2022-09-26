@@ -58,11 +58,19 @@ def menu(request):
 
 def lotto(request):
 
-    num = random.sample(range(1,46),6)
-
     context = {
-        'lotto' : num
+        'lotto' : []
+        
     }
+
+    
+
+    for i in range(5):
+        num = random.sample(range(1,46),6)
+        context['lotto'].append(num)
+        
+
+    
     return render(request, 'lotto.html', context)
     
  

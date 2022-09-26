@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<form action="/answer">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label"
+      >이름을 입력하세요.</label
+    >
+    <input
+      name="name"
+      type="text"
+      class="form-control"
+      id="exampleInputEmail1"
+      style="width: 400px"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">전생 확인하기</button>
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<form action="/lorem_result">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">문단의 수</label>
+    <input
+      name="a"
+      type="number"
+      class="form-control"
+      id="exampleInputEmail1"
+      style="width: 400px"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail2" class="form-label">문단별 단어의 수</label>
+    <input
+      name="b"
+      type="number"
+      class="form-control"
+      id="exampleInputEmail2"
+      style="width: 400px"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">생성</button>
+</form>
+{% endblock %}
