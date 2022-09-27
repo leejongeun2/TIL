@@ -22,7 +22,7 @@ def number(request, number):
         'text' : text,
     }
 
-    return render(request, 'is-odd-even.html', context)
+    return render(request, 'pratices/is-odd-even.html', context)
 
 
 def num(request, a, b):
@@ -43,11 +43,11 @@ def num(request, a, b):
     
     }
 
-    return render(request, 'calculate.html', context)
+    return render(request, 'pratices/calculate.html', context)
 
 
 def name(request):
-    return render(request, 'name.html')
+    return render(request, 'pratices/name.html')
 
 
 def answer(request):
@@ -61,10 +61,10 @@ def answer(request):
         'animal' : animal,
     }
 
-    return render(request, 'answer.html', context)
+    return render(request, 'pratices/answer.html', context)
 
 def lorem_input(request):
-    return render(request, 'lorem_input.html')
+    return render(request, 'pratices/lorem_input.html')
 
 
 def lorem_result(request):
@@ -84,7 +84,7 @@ def lorem_result(request):
             temp.append(random.choice(word)) 
         context['c'].append(temp)
 
-    return render(request, 'lorem_result.html', context)
+    return render(request, 'pratices/lorem_result.html', context)
 
 
 
