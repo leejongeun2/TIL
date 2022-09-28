@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block content %}
+<h1>글 작성완료</h1>
+<p>제목: {{ title }}</p>
+<p>내용: {{ content }}</p>
+
+<a href="{% url 'posts:index' %}">목록으로</a>
+{% endblock %}

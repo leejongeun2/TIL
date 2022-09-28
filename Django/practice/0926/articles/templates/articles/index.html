@@ -11,7 +11,7 @@
   </div>
   <div>
     <h2>글 작성</h2>
-    <form action="/articles/create/">
+    <form action="{% url 'create' %}">
       <input type="text" name="content" />
       <input type="submit" />
     </form>
