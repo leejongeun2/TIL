@@ -14,4 +14,6 @@ urlpatterns = [
     path('new/', views.new, name='new'),
     path('create/', views.create, name='create'),
     path('delete/<int:pk>', views.delete, name='delete'),
+    # 어떤 주소로(디테일)로 요청하면 어떤 뷰(디테일) 함수를 응답할까? 
+    path('detail/', views.detail, name='detail'),
 ]

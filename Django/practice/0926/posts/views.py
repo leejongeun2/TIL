@@ -14,6 +14,10 @@ def index(request):
     }
     return render(request, 'posts/index.html', context)
 
+
+def detail(request):
+    return render(request, 'post/detail/html')
+
 def new(request):
     return render(request, 'posts/new.html')
 
