@@ -4,9 +4,10 @@
   {% for post in posts %}
   <li>
     id: {{ post.id }}
-    <a href="{% url 'posts:detail' %}">제목: {{ post.title }}</a>
-    <a href=""> [수정] </a>
-    <a href="/posts/delete/{{ post.id }}"> [삭제] </a>
+    <a href="{% url 'posts:detail' post.pk %}">제목: {{ post.title }}</a>
+    <a href="{% url 'posts:edit' post.pk %}"> [수정] </a>
+    <!--유알엘 뒤에 동적인자 전달-->
+    <a href="{% url 'posts:delete' post.pk %}"> [삭제] </a>
   </li>
   {% endfor %}
 </ul>
