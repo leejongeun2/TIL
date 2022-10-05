@@ -1,3 +1,5 @@
+{% load django_bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +12,7 @@
     <h1>글쓰기</h1>
     <!--사용자에게 양식을 제공하고(input: name, value) 값을 받아서 서버에 전송(form:action, method)-->
     <form action="{% url 'article:create' %}" method="POST">
-      {% csrf_token %} {{ article_form.as_p }}
+      {% csrf_token %} {% bootstrap_form article_form %} {# article_form.as_p #}
       <!---->
       <!--create url로 전송(단, 여기서 create url에 있는 view는 인덱스로 리다이렉트 됨)-->
       <!-- <label for="title">제목 : </label>
