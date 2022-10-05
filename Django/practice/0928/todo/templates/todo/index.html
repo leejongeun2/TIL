@@ -59,7 +59,7 @@
     </form>
     <table class="table">
       <thead>
-        <tr>
+        <tr class="text-center">
           <th scope="col">우선 순위</th>
           <th scope="col">할 일</th>
           <th scope="col">생성 날짜</th>
@@ -69,47 +69,52 @@
           <th scope="col">삭제</th>
         </tr>
       </thead>
-      {% for tod in todo %} {% if tod.completed %}
+
       <tbody>
-        <tr>
-          <th scope="row"><del>{{ tod.priority }}</del></th>
-          <td><del>{{ tod.content }}</del></td>
-          <td><del>{{ tod.created_at }}</del></td>
-          <td><del>{{ tod.deadline }}</del></td>
-          <td class="fw-bold text-primary"><del>{{ tod.completed }}</del></td>
-          <td>
+        {% for tod in todo %}
+        <tr class="text-center">
+          {% if tod.completed %}
+          <th scope="col"><del>{{ tod.priority }}</del></th>
+          <td scope="col"><del>{{ tod.content }}</del></td>
+          <td scope="col"><del>{{ tod.created_at }}</del></td>
+          <td scope="col"><del>{{ tod.deadline }}</del></td>
+          <td scope="col" class="fw-bold text-primary">
+            <del>{{ tod.completed }}</del>
+          </td>
+          <td scope="col">
             <a class="btn btn-primary" href="{% url 'todo:update' tod.pk %}"
               >변경</a
             >
           </td>
-          <td>
+          <td scope="col">
             <a class="btn btn-danger" href="{% url 'todo:delete' tod.pk %}"
               >삭제</a
             >
           </td>
-        </tr>
-      </tbody>
-      {% else %}
-      <tbody>
-        <tr>
-          <th scope="row">{{ tod.priority }}</th>
-          <td>{{ tod.content }}</td>
-          <td>{{ tod.created_at }}</td>
-          <td>{{ tod.deadline }}</td>
-          <td class="fw-bold text-danger">{{ tod.completed }}</td>
-          <td>
+          {% else %}
+          <th scope="col">{{ tod.priority }}</th>
+          <td scope="col">{{ tod.content }}</td>
+          <td scope="col">{{ tod.created_at }}</td>
+          <td scope="col">{{ tod.deadline }}</td>
+          <td scope="col" class="fw-bold text-danger">{{ tod.completed }}</td>
+          <td scope="col">
             <a class="btn btn-primary" href="{% url 'todo:update' tod.pk %}"
               >변경</a
             >
           </td>
-          <td>
-            <a class="btn btn-danger" href="{% url 'todo:delete' tod.pk %}"
+          <td scope="col">
+            <a
+              scope="col"
+              class="btn btn-danger"
+              href="{% url 'todo:delete' tod.pk %}"
               >삭제</a
             >
           </td>
+          {% endif %}
         </tr>
+
+        {% endfor %}
       </tbody>
-      {% endif %} {% endfor %}
     </table>
 
     <script
