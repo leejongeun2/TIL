@@ -1,0 +1,9 @@
+<h1>영화 정보</h1>
+<a href="{% url 'movie:create' %}">영화 정보 등록</a>
+{% for movi in movie %}
+<h3>
+  <a href="{% url 'movie:detail' movi.pk %}">{{ movi.title }}</a>
+</h3>
+<p>{{ movi.running_time }}</p>
+<hr />
+{% endfor %}
