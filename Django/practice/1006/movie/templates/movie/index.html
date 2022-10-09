@@ -1,9 +1,10 @@
+{% extends 'base.html' %} {% block content %}
 <h1>영화 정보</h1>
 <a href="{% url 'movie:create' %}">영화 정보 등록</a>
-{% for movi in movie %}
+{% for movie in movies %}
 <h3>
-  <a href="{% url 'movie:detail' movi.pk %}">{{ movi.title }}</a>
+  <a href="{% url 'movie:detail' movie.pk %}">{{ movie.title }}</a>
 </h3>
-<p>{{ movi.running_time }}</p>
+<p>{{ movie.running_time }}</p>
 <hr />
-{% endfor %}
+{% endfor %} {% endblock %}

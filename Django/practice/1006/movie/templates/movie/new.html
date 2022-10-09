@@ -1,10 +1,10 @@
-{% load django_bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
-<h1>글쓰기</h1>
+{% extends 'base.html' %}{% load django_bootstrap5 %} {% block content %}
 
 <!-- form : 사용자에게 양식을 제공하고 
   값을 받아서(input : name, value) 
   서버에 전송(form : action, method)-->
-<form action="" method="POST">
+<form action="{% url 'movie:create' %}" method="POST">
+  <!--지금있는 페이지에 포스트로 들어가겠다-->
   <!--action: 서버에 전송-->
   {% csrf_token %} {% bootstrap_form movie_form %}
   <!-- <label for="title">제목 : </label>
@@ -13,3 +13,4 @@
   <textarea name="content" id="content" cols="30" rows="10" required></textarea> -->
   {% bootstrap_button button_type="submit" content="OK" %}
 </form>
+{% endblock content %}
