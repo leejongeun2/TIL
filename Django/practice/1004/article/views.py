@@ -36,7 +36,7 @@ def create(request): # 요청정보는 넘어온 정보
     # content = request.POST.get('content')
     # Article.objects.create(title=title, content=content) # 모델에 저장(title컬럼은 title변수 할당,  content컬럼은 content변수 할당)
     
-        article_form = ArticleForm(request.POST) # 입력 받을 것이 많다면 많이 써야 되는데, 아티클 폼으로 대체 가능
+        article_form = ArticleForm(request.POST) # 입력 받을 것이 많다면 많이 써야 되는데, 아티클 폼으로 대체 가능, 폼에다가 사용자 정보를 집어 넣는다.
         if article_form.is_valid(): #아티클 폼이 유효하다면?
             article_form.save() #아티클 폼 저장
             return redirect('article:index') # 앱네임 아티클 인덱스페이지로 이동
@@ -63,10 +63,10 @@ def detail(request, pk):
 
 
 def update(request, pk): 
-    article = Article.objects.get(pk=pk)
+    article = Article.objects.get(pk=pk) # 정보 가져오기
     if request.method == 'POST':
         # post: 인풋값 가져와서 검증하고 디비에 저장
-        article_form = ArticleForm(request.POST, instance=article) # 기존에 있는 인스턴스를 수정하는 것
+        article_form = ArticleForm(request.POST, instance=article) # 뒤에 있는 내용을 앞에것으로 바꾼다, 기존에 있는 인스턴스를 수정하는 것
         if article_form.is_valid():
             # 유효성 검사 통과하면 저장하고 상세보기 페이지로가기
             article_form.save()
@@ -75,7 +75,7 @@ def update(request, pk):
     else:
         # GET : Form을 제공
          # 디비에 저장 된 글 가져와서
-        article_form = ArticleForm(instance=article) # 인스턴스를 정함, 여기서 아티클폼: 기존의 인스턴스의 값을 가진 상태의
+        article_form = ArticleForm(instance=article) # 인스턴스를 정함(아티클에 있는 것 그대로 쓰겠다), 여기서 아티클폼: 기존의 인스턴스의 값을 가진 상태의
     context = {
         'article_form': article_form
     }
