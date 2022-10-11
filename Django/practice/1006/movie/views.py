@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from movie.forms import MovieForm
 from .models import Movie
 
+
 # Create your views here.
 
 def index(request):

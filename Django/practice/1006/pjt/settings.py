@@ -32,9 +32,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'movie',
+    'accounts',
     'django_bootstrap5',
-    'django.contrib.admin',
-    'django.contrib.auth',
+    'django_extensions',
+    'django.contrib.admin', # 관리자
+    'django.contrib.auth', # 유저/인증
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -105,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'UTC'
 
@@ -125,3 +127,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# user model 
+# accounts앱에 있는 user가 이제부터 내가 사용할 사용자의 정보야.
+AUTH_USER_MODEL = 'accounts.User'
