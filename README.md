@@ -39,7 +39,7 @@
 🍒0712(화)
 
 - `조건문` => `if`
-- `반복문` => `for` `while` `break` `countinue, `for-else`
+- `반복문` => `for` `while` `break` `countinue,`for-else`
 
 🍒0713(수)
 
@@ -273,3 +273,9 @@
 🍒1007(금)
 
 - ModelForm, POST 사용한 페어 프로그래밍: [영화 리뷰 커뮤니티](https://github.com/leejongeun2/02-PJT-Pair)
+
+🍒1011(화)
+
+- django auth
+- 회원가입
+- 실습: [1006 파일에 accounts앱 추가](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1006)
