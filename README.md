@@ -287,5 +287,5 @@
 
 🍒1012(수)
 
-- Q&A
-- 실습:
+- Q&A, 회원정보 수정
+- 실습: [1006 파일에 accounts/update 추가](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1006)
