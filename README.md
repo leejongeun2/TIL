@@ -279,3 +279,13 @@
 - django auth
 - 회원가입
 - 실습: [1006 파일에 accounts앱 추가](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1006)
+
+🍒1012(수)
+
+- 로그인
+- 실습: [10006 파일에 login 추가](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1006)
+
+🍒1012(수)
+
+- Q&A
+- 실습:
