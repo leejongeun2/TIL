@@ -24,12 +24,34 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'movie:index' %}">목록</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'movie:create' %}">리뷰작성</a>
-            </li>
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'movie:create' %}">리뷰작성</a>
+              </li>
+            {% endif %}
+            <!--로그인을 하지 않는 상태에서만 회원가입이 보여져야함-->
+            {% if request.user.is_authenticated %}
+              <!--request객체는 user의객체이며, user객체가 가지고 있는 is_au이라는 읽을 수있는 속성-->
+              <!--user가 로그인이 되었다면-->
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
+              </li>
+
+            {% endif %}
           </ul>
         </div>
       </nav>
+      {% if request.user.is_authenticated %}
+        <h1>{{ request.user }}</h1>
+      {% endif %}
+      <!--setting>templates>contrib.auth.context_processors.auth 여기에 user가 들어가있어서 그걸 사용한 것임-->
       <div class="container">
         {% block content %}{% endblock %}
       </div>

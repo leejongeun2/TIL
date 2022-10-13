@@ -38,17 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.admin', # 관리자
     'django.contrib.auth', # 유저/인증
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions', # 세션 관리
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
+# 요청이 들어오고 미들웨어 순으로 사이에 처리해야 될 것을 다해줌
+# 응답을 하면 역순으로 미들웨어를 거치면서 나감
+# 요청과 응답을 처리할 때 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware', # 세션
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware', # csrf
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # 인증
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
