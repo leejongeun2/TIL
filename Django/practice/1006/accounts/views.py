@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 # from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationform
+from .forms import CustomUserChangeForm, CustomUserCreationform
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # 1.버튼을 안만들어 놨는데, url로 직접 접근 가능
@@ -68,6 +69,21 @@ def login(request):
 def logout(request):
     auth_logout(request) # 요청에 대한 정보, 디비에 저장 된 세션 정보를 날려버리는 행위
     return redirect('movie:index')
+
+@login_required #이걸 해놓으면 프로필 수정 페이지를 로그아웃 한 상태에서 들어올일 없다.(수정페이지를 가도 로그인 페이지로 접속됨), request.user로 유저객체를 쓰는 뷰함수에서는 무조건 쓰는게 좋음(로그인한 정보를 사용해서 뭘 하겠다라는 것이기 때문)
+def update(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:detail', request.user.pk) # 여기까지만 쓰면 안되고 pk값을 받아와야하기 떄문에 request.user.pk를 넣어줌
+    else:
+        form = CustomUserChangeForm(instance=request.user) # 기존값 로그인
+    context = {
+        'form':form
+    }
+    return render(request, 'accounts/update.html', context)
+
 
 
   
