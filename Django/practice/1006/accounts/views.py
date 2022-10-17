@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 # from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserChangeForm, CustomUserCreationform
@@ -68,6 +69,7 @@ def login(request):
     
 def logout(request):
     auth_logout(request) # 요청에 대한 정보, 디비에 저장 된 세션 정보를 날려버리는 행위
+    messages.warning(request, '로그아웃 하였습니다.') # 경고 메세지 노출(빨간색) -> 템플릿에도 반영해야함(베이스에 한번만 반영하면 됨)
     return redirect('movie:index')
 
 @login_required #이걸 해놓으면 프로필 수정 페이지를 로그아웃 한 상태에서 들어올일 없다.(수정페이지를 가도 로그인 페이지로 접속됨), request.user로 유저객체를 쓰는 뷰함수에서는 무조건 쓰는게 좋음(로그인한 정보를 사용해서 뭘 하겠다라는 것이기 때문)

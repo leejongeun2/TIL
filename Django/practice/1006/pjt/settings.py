@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'accounts',
     'django_bootstrap5',
     'django_extensions',
+    'imagekit',
     'django.contrib.admin', # 관리자
     'django.contrib.auth', # 유저/인증
     'django.contrib.contenttypes',
@@ -51,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware', # csrf
     'django.contrib.auth.middleware.AuthenticationMiddleware', # 인증
-    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware', # 메세지
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -67,7 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages', # 메세지
             ],
         },
     },
@@ -124,6 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = BASE_DIR / 'images'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -133,3 +136,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # user model 
 # accounts앱에 있는 user가 이제부터 내가 사용할 사용자의 정보야.
 AUTH_USER_MODEL = 'accounts.User'
+
+# message framework
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

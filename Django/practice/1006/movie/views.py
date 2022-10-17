@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from movie.forms import MovieForm
 from .models import Movie
@@ -19,9 +20,10 @@ def create(request):
     if request.user.is_authenticated: # 로그인해야지 글작성할 수 있지만 주소에 create입력하면 넘어감, 그럴수 없도록(create주소를 입력해도 넘어가지 않도록) 서버에서 막아주는 것
         if request.method == 'POST':
 
-            movie_form = MovieForm(request.POST) # 사용자가 작성한 내용
+            movie_form = MovieForm(request.POST, request.FILES) # 사용자가 작성한 내용, 이미지가 안들어갔을 때, 여기를 확인!(파일은 별도의 객체를 가지고 있기 때문에 request.files)
             if movie_form.is_valid():
                 movie_form.save()
+                messages.success(request, '글 작성 완료!')
                 return redirect('movie:index')
         else:
             movie_form = MovieForm() # 틀만 제공
@@ -49,9 +51,10 @@ def update(request, pk):
     movie = Movie.objects.get(pk=pk)
 
     if request.method == 'POST':
-        movie_form = MovieForm(request.POST, instance=movie) #  movie = Movie.objects.get(pk=pk)
+        movie_form = MovieForm(request.POST, request.FILES, instance=movie) #  movie = Movie.objects.get(pk=pk)
         if movie_form.is_valid():
             movie_form.save()
+            messages.success(request, '글 수정 완료!')
             return redirect('movie:detail', movie.pk)
     else:
         movie_form  = MovieForm(instance=movie)

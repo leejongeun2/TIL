@@ -1,10 +1,20 @@
-{% extends 'base.html' %} {% block content %}
-<h1>영화 정보</h1>
-<a href="{% url 'movie:create' %}">영화 정보 등록</a>
-{% for movie in movies %}
-<h3>
-  <a href="{% url 'movie:detail' movie.pk %}">{{ movie.title }}</a>
-</h3>
-<p>{{ movie.running_time }}</p>
-<hr />
-{% endfor %} {% endblock %}
+{% extends 'base.html' %}
+{% block content %}
+  <h1>영화 정보</h1>
+  {% if request.user.is_authenticated %}
+    <a class='btn btn-primary my-3' href="{% url 'movie:create' %}">영화 정보 등록</a>
+  {% endif %}
+  <div class="row">
+    {% for movie in movies %}
+      <div class="col-4">
+        <div class="card">
+          <img src="{{ movie.image.url }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <a class='btn btn-primary my-3' href="{% url 'movie:detail' movie.pk%}">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
