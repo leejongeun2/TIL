@@ -285,7 +285,17 @@
 - 로그인
 - 실습: [10006 파일에 login 추가](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1006)
 
-🍒1012(수)
+🍒1013(목)
 
 - Q&A, 회원정보 수정
 - 실습: [1006 파일에 accounts/update 추가](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1006)
+
+🍒1014(금)
+
+- 페어 프로그래밍
+- 회원가입하여 로그인 후 리뷰 작성할 수 있는 영화리뷰 사이트
+
+🍒1017(월)
+
+- image 업로드
+- message
