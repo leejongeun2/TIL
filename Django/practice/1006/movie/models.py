@@ -17,3 +17,4 @@ class Movie(models.Model): # Movie모델 클래스는 models에 있는 model을 
                                     processors=[ResizeToFill(1200,960)], 
                                     format='JPEG',
                                     options={'quality':80})
+
