@@ -4,11 +4,16 @@
   {% if request.user.is_authenticated %}
     <a class='btn btn-primary my-3' href="{% url 'movie:create' %}">영화 정보 등록</a>
   {% endif %}
+
   <div class="row">
     {% for movie in movies %}
       <div class="col-4">
         <div class="card">
-          <img src="{{ movie.image.url }}" class="card-img-top" alt="...">
+          {% if movie.thumbnail %}
+            <img src="{{ movie.thumbnail.url }}" class="card-img-top" alt="...">
+          {% else %}
+            <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top">
+          {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <a class='btn btn-primary my-3' href="{% url 'movie:detail' movie.pk%}">Go somewhere</a>

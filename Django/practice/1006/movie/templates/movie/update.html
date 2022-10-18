@@ -1,9 +1,12 @@
-{% extends 'base.html' %} {% load django_bootstrap5 %}{% block content %}
-<h1>글 수정하기</h1>
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <h1>글 수정하기</h1>
 
-<form action="" method="POST">
-  <!--detail페이지로 돌아감-->
-  {% csrf_token %} {% bootstrap_form movie_form %}
-  <input type="submit" value="수정" />
-</form>
+  <form action="" method="POST" enctype="multipart/form-data">
+    <!--detail페이지로 돌아감-->
+    {% csrf_token %}
+    {% bootstrap_form movie_form %}
+    <input type="submit" value="수정"/>
+  </form>
 {% endblock content %}
