@@ -293,9 +293,16 @@
 🍒1014(금)
 
 - 페어 프로그래밍
-- 회원가입하여 로그인 후 리뷰 작성할 수 있는 영화리뷰 사이트
+- [회원가입하여 로그인 후 리뷰 작성할 수 있는 영화리뷰 사이트]()
 
 🍒1017(월)
 
 - image 업로드
 - message
+- 실습: [1006 파일에 image추가/수정/삭제/배열 추가](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1006)
+
+🍒1018(화)
+
+- 1:N 모델 구성
+- 댓글 생성/삭제
+- 실습: [댓글 추가/삭제](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1018)
