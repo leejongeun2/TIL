@@ -1,0 +1,9 @@
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+<h1>글쓰기</h1>
+<form action="{% url 'articles:create' %}" method="POST">
+  {% csrf_token %}
+  {% bootstrap_form article_form %}
+  {% bootstrap_button content="ok" button_type="submit" button_class="btn-primary col-3" %}
+</form>
+{% bootstrap_javascript %}

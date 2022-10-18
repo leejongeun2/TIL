@@ -1,0 +1,31 @@
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+<h1>{{ article.pk }}번 게시글</h1>
+<p>{{ article.title }}
+</p>
+<p>{{ article.content }}
+</p>
+<h4>댓글</h4>
+<form action="{% url 'articles:comment_create' article.pk %}" method="POST">
+  {% csrf_token %}
+  {% bootstrap_form comment_form %}
+  {% bootstrap_button content="ok" button_type="submit" button_class="btn-primary col-3" %}
+</form>
+<hr>
+<p>{{ comments.count }}개의 댓글이 있습니다.</p>
+<ul>
+  {% for comment in comments %}
+    <li>{{ comment.content }}
+      <form action="{% url 'articles:comments_delete' article.pk comment.pk %}">
+        {% csrf_token %}
+        <input type="submit" value="delete">
+      </form>
+    </li>
+
+    {% empty %}
+    <p>댓글이 없어요.</p>
+  {% endfor %}
+</ul>
+<hr>
+
+{% bootstrap_javascript %}
