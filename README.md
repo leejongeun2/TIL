@@ -258,12 +258,10 @@
 🍒1005(수)
 
 - ModelForm
-
-* static
-* bootstrap
-* admin
-
-- 실습: 복습(note대체)
+- static
+- bootstrap
+- admin
+- 실습: [복습(note대체)](https://github.com/leejongeun2/TIL/blob/master/Django/note/1005_%EC%88%98.md)
 
 🍒1006(목)
 
