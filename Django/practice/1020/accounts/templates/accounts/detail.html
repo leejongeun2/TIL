@@ -3,6 +3,23 @@
   <h1>{{ user.username }}
     님의 프로필</h1>
   <a href="{% url 'accounts:update' %}" class='btn btn-outline-success ms-5'>프로필 수정</a>
+  <p>팔로우 :
+    {{ user.followings.count }}
+    | 팔로워 :
+    {{ user.followers.count }}</p>
+  {% if request.user.is_authenticated %}
+    {% if request.user != user %}
+      <a href="{% url 'accounts:follow' user.pk %}">
+        {% if request.user in user.followers.all %}
+          팔로우취소
+        {% else %}
+          팔로우
+        {% endif %}
+      </a>
+    {% endif %}
+  {% else %}
+    팔로우 하려면 로그인이 필요합니다
+  {% endif %}
   <div class="row">
     <div class="col-6">
       <h3>작성한 글</h3>

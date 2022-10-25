@@ -5,6 +5,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -88,3 +89,18 @@ def change_password(request):
         "form": form,
     }
     return render(request, "accounts/change_password.html", context)
+@login_required
+def follow(request, pk):
+    # 팔로우 상태가 아니면, 팔로우를 누르면 추가(add)
+    # 프로필에 해당하는 유저를 로그인한 유저가! 다른사람이 팔로잉 했으면 팔로워를 받아야함
+    user = get_user_model().objects.get(pk=pk)
+    if request.user == user:
+        messages.warning(request, '스스로 팔로우 할 수 없습니다.')
+        return redirect('accounts:detail', pk)
+    if request.user in user.followers.all():
+        user.followers.remove(request.user)
+    else:
+        user.followers.add(request.user) # 팔로우한 사람이 requeset.user
+    # 이미 팔로우 상태이면, 팔로우 취소 버튼을 누르면 삭제(remove)
+
+    return redirect('accounts:detail', pk)
