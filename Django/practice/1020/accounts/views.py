@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserChangeForm, CustomUserCreationform
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -56,7 +56,8 @@ def logout(request):
     return redirect('articles:index')
 
 def detail(request, pk):
-    user = get_user_model().objects.get(pk=pk)
+    # user = get_user_model().objects.get(pk=pk)
+    user = get_object_or_404(get_user_model(), pk=pk)
     context = {
         'user': user
     }
@@ -93,7 +94,8 @@ def change_password(request):
 def follow(request, pk):
     # 팔로우 상태가 아니면, 팔로우를 누르면 추가(add)
     # 프로필에 해당하는 유저를 로그인한 유저가! 다른사람이 팔로잉 했으면 팔로워를 받아야함
-    user = get_user_model().objects.get(pk=pk)
+    user = get_object_or_404(get_user_model(), pk=pk)
+    # user = get_user_model().objects.get(pk=pk)
     if request.user == user:
         messages.warning(request, '스스로 팔로우 할 수 없습니다.')
         return redirect('accounts:detail', pk)

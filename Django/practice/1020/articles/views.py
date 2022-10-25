@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article, Comment
 from articles.forms import ArticleForm, CommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.views.decorators.http import require_POST
+# 함수 위에 @require_POST 하면 GET요청인 경우(예를들어 index함수위에), 405에러 노출 될수있게함
 # Create your views here.
 
 def index(request):
@@ -14,7 +15,8 @@ def index(request):
     return render(request, 'articles/index.html', context)
 
 def detail(request, pk):
-    article = Article.objects.get(pk=pk)
+    # article = Article.objects.get(pk=pk)
+    article = get_object_or_404(Article, pk=pk)
     comment_form = CommentForm()
     context = {
         'article' : article,
@@ -43,8 +45,8 @@ def create(request):
 
 @login_required
 def update(request, pk):
-    article = Article.objects.get(pk=pk)
-
+    # article = Article.objects.get(pk=pk)
+    article = get_object_or_404(Article, pk=pk)
     if request.method == 'POST':
         article_form = ArticleForm(request.POST, request.FILES, instance=article) #  movie = Movie.objects.get(pk=pk)
         if article_form.is_valid():
