@@ -7,7 +7,7 @@ class CustomUserCreationform(UserCreationForm):
     
     class Meta:
         model = get_user_model()
-        fields = ("username", )
+        fields = ("username", "email",)
 # get함수를 호출해라, 직접 참조하지 않도록
 
 class CustomUserChangeForm(UserChangeForm):
@@ -16,4 +16,4 @@ class CustomUserChangeForm(UserChangeForm):
 # user u는 비밀번호 두개를 받을 필요가 없음. 구성 자체가 다르고, 비밀번호는 그대로 입력해서 주면 될꺼같음
     class Meta:
         model = get_user_model()
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('email',)

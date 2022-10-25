@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Article, Comment
 from articles.forms import ArticleForm, CommentForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -24,7 +25,7 @@ def detail(request, pk):
 
 def create(request):
     if request.method == 'POST':
-        article_form = ArticleForm(request.POST)
+        article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             article = article_form.save(commit=False) # 아티클 객체를 받아서
             # 로그인한 유저가 작성자(이티클의 유저)임!
@@ -40,6 +41,7 @@ def create(request):
     # 따라서, 유효한 값이 아닐 때는 post를 받아서, 요청받은 article form!!
     return render(request, 'articles/form.html', context)
 
+@login_required
 def update(request, pk):
     article = Article.objects.get(pk=pk)
 
@@ -67,6 +69,7 @@ def delete(request, pk):
     }
     return render(request, 'articles/index.html', context)
 
+@login_required
 def comment_create(request, pk):
     article = Article.objects.get(pk=pk)
     comment_form = CommentForm(request.POST)
@@ -82,3 +85,18 @@ def comments_delete(request, article_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     comment.delete()
     return redirect('articles:detail', article_pk)
+    
+@login_required
+def like(request, pk):
+    
+    article = Article.objects.get(pk=pk)
+    # 만약에 로그인한 유저가 이 글을 좋아요 눌렀다면,
+    # if article.like_users.filter(id=request.user.id).exists():사용 가능
+    if request.user in article.like_users.all():
+    # 좋아요 삭제하고 
+        article.like_users.remove(request.user)
+    else:
+    # 좋아요 추가하고
+        article.like_users.add(request.user)
+    # 상세페이지로 리다이렉트
+    return redirect('articles:detail', pk)

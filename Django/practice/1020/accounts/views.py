@@ -2,10 +2,18 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserChangeForm, CustomUserCreationform
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+
+def index(request):
+    users = get_user_model().objects.all()
+    context = {"users": users}
+    return render(request, "accounts/index.html", context)
+
 
 def signup(request):
     if request.method == 'POST':
@@ -52,3 +60,31 @@ def detail(request, pk):
         'user': user
     }
     return render(request, 'accounts/detail.html', context)
+
+@login_required
+def update(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:detail', request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, 'accounts/update.html', context)
+
+@login_required
+def change_password(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("accounts:index")
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        "form": form,
+    }
+    return render(request, "accounts/change_password.html", context)

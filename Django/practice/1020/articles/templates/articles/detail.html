@@ -2,37 +2,65 @@
 {% load django_bootstrap5 %}
 {% block body %}
   <h1 class="my-5">{{ article.pk }}번 게시글</h1>
+  <a href="{% url 'accounts:detail' article.user.pk %}">{{ article.user.username }}</a>
   <p>{{ article.title }}
   </p>
   <p>{{ article.content }}
   </p>
-  <div class="d-flex justify-content-end">
-    <a class='btn btn-danger me-2' href="{% url 'articles:update' article.pk %}">수정하기</a>
-    <form action="{% url 'articles:delete' article.pk %}" method="POST">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">삭제하기</button>
+  {% if request.user.is_authenticated %}
+    {% if request.user in article.like_users.all %}
+      <p>
+        <a href="{% url 'articles:like' article.pk %}">
+          <i class="bi bi-suit-heart-fill"></i>
+        </a>
+      {% else %}
+        <a href="{% url 'articles:like' article.pk %}">
+          <i class="bi bi-suit-heart"></i>
+        </a>
+      {% endif %}
+
+    </p>
+  {% else %}
+    <p>좋아요 표시를 하려면 로그인이 필요합니다.</p>
+  {% endif %}
+  <p>좋아요 갯수:
+    {{ article.like_users.count }}</p>
+  {% if article.image %}
+    <img src="{{ article.image.url }}" alt="{{ article.image }}" width="400" height="300">
+  {% endif %}
+  {% if request.user == article.user %}
+    <div class="d-flex justify-content-end">
+      <a class='btn btn-danger me-2' href="{% url 'articles:update' article.pk %}">수정하기</a>
+      <form action="{% url 'articles:delete' article.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">삭제하기</button>
+      </form>
     </div>
+  {% endif %}
 
-    <h4>댓글</h4>
-    <form action="{% url 'articles:comment_create' article.pk %}" method="POST">
-      {% csrf_token %}
-      {% bootstrap_form comment_form %}
-      {% bootstrap_button content="ok" button_type="submit" button_class="btn-danger col-3" %}
-    </form>
-    <hr>
-    <p>{{ comments.count }}개의 댓글이 있습니다.</p>
-    <ul>
-      {% for comment in comments %}
-        <li>{{ comment.content }}
-          <form action="{% url 'articles:comments_delete' article.pk comment.pk %}">
-            {% csrf_token %}
-            <input type="submit" value="delete">
-          </form>
-        </li>
+  <h4>댓글</h4>
+  <form action="{% url 'articles:comment_create' article.pk %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form comment_form %}
+    {% bootstrap_button content="ok" button_type="submit" button_class="btn-danger col-3" %}
+  </form>
+  <hr>
+  <p>{{ comments.count }}개의 댓글이 있습니다.</p>
+  <ul>
+    {% for comment in comments %}
+      <li>{{ comment.user.username }}
+        <!--객체.속성-->
+        |
+        {{ comment.content }}
+        <form action="{% url 'articles:comments_delete' article.pk comment.pk %}">
+          {% csrf_token %}
+          <input type="submit" value="delete">
+        </form>
+      </li>
 
-        {% empty %}
-        <p>댓글이 없어요.</p>
-      {% endfor %}
-    </ul>
-    <hr>
-  {% endblock %}
+      {% empty %}
+      <p>댓글이 없어요.</p>
+    {% endfor %}
+  </ul>
+  <hr>
+{% endblock %}
