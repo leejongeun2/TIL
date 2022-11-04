@@ -2,7 +2,9 @@
 {% block body %}
   <h1>{{ user.username }}
     님의 프로필</h1>
-  <a href="{% url 'accounts:update' %}" class='btn btn-outline-success ms-5'>프로필 수정</a>
+  {% if request.user == user %}
+  <a href="{% url 'accounts:update' user.pk %}" class='btn btn-outline-success ms-5'>프로필 수정</a>
+  {% endif %}
   <p>팔로우 :
     {{ user.followings.count }}
     | 팔로워 :

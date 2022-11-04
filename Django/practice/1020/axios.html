@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button>클릭</button>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script >//js는 브라우저 조작! 브라우저에 선택, 요소 만들고 두개 붙여주기
+        const body = document.querySelector('body')
+        const title = document.createElement('h1')
+        title.innerText = 'AJAX'
+        body.appendChild(title)
+
+        const button = document.querySelector('button')//좋아요 버튼을 누르면, 장고 서버 url로 요청을 보내서(액셧으로) 도착하면 하트 색칠, 카운트 바꿈(새로고침이 아니라 붙는 것임), 사용기는 비동기 요청을 보내고 응답 결과가 제이슨을 주고 제이슨은 돔조작으로 화면 바꿈
+        //버튼을 클릭하면, 함수 실행해줘
+        button.addEventListener('click', function(){ //클릭할때마다 url에 요청을 보내서, 가지고 와서 데이터를 붙임
+            const URL = 'https://jsonplaceholder.typicode.com/todos/1'//title은 여기서 요청 보내서 온 값으로 만들어짐
+           //axios는 url로 요청 보내줌
+           //처리가 완료되면 실행시켜주겠다는 약속
+           // 성공적이면 then, 실패면 catch
+            axios.get(URL)
+                .then(response => {
+                    // 성공해서 받은 응답 객체를 활용한 조작!!
+                    const h2 = document.createElement('h2')
+                    h2.innerText = response.data.title
+                    body.appendChild(h2)
+                    const p = document.createElement('p')
+                    p.innerText = response.data.userId
+                    body.appendChild(p)
+                })
+                .catch(err => console.log(`${err}!!!`))
+        })
+        
+        console.log('안녕하세요!')
+    </script>
+  </body>
+
+</html>

@@ -318,11 +318,38 @@
 🍒1020(목)
 
 - Q&A
-- 실습: [1018(화)+ 1019(수) 결합 한 실습(로그인, 댓글 로직 미완성)](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1020)
+- 실습: [1018(화)+ 1019(수) 결합 한 실습](https://github.com/leejongeun2/TIL/tree/master/Django/practice/1020)
   - 회원이 작성한 게시글 목록을 출력
   - 회원이 작성한 댓글 목록을 출력
 
 🍒1021(금)
 
 - 페어 프로그래밍
-- [프로필 사진 수정, 프로필 페이지에서 댓글, 게시글 확인 기능 구현](https://github.com/leejongeun2/04-PJT-Pair)
+- 실습: [프로필 사진 수정, 프로필 페이지에서 댓글, 게시글 확인 기능 구현](https://github.com/leejongeun2/04-PJT-Pair)
+
+🍒1024(월)
+- M:N 모델 구성
+* 글 <-> 좋아요
+* 실습: [10/20 파일에 좋아요 기능 추가](https://github.com/leejongeun2/04-PJT-Pair)
+
+🍒1025(화)
+- M:N 모델 구성
+* user <-> user
+* 실습: [10/20 파일에 팔로우 기능 추가](https://github.com/leejongeun2/04-PJT-Pair)
+
+🍒1026(수)
+* 비동기
+* 댓글/좋아요
+* 실습: [10/26 비동기 댓글/좋아요 추가, 댓글 삭제는 구현하지 못함](https://github.com/leejongeun2/04-PJT-Pair)
+
+🍒1027(목)
+* 쿼리 심화
+* 실습: [오후 페어 프로그래밍 인스타그램 구현](https://github.com/chul1631/PAIR-05)
+
+🍒1028(금)
+* 오전 1시간 헤로쿠 배포 교육
+* 실습: [오후 페어 프로그래밍 인스타그램 구현](https://github.com/chul1631/PAIR-05)
+
+🍒1031(월)-11/7(화)
+* 첫번째 팀 프로젝트
+* 11/7(화) 발표

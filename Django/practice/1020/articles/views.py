@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article, Comment
 from articles.forms import ArticleForm, CommentForm
@@ -73,6 +74,7 @@ def delete(request, pk):
 
 @login_required
 def comment_create(request, pk):
+    print(request.POST)
     article = Article.objects.get(pk=pk)
     comment_form = CommentForm(request.POST)
     if comment_form.is_valid():
@@ -80,7 +82,12 @@ def comment_create(request, pk):
         comment.article = article # 게시글은 입력 받은 댓글의 게시글
         comment.user = request.user # 로그인한 유저가 댓글작성자(커멘트의 유저)임!
         comment.save()
-    return redirect('articles:detail', article.pk)
+        context = {
+            'content': comment.content,
+            'userName': comment.user.username,
+        }
+        return JsonResponse(context)
+ 
 
 
 def comments_delete(request, article_pk, comment_pk):
@@ -88,6 +95,7 @@ def comments_delete(request, article_pk, comment_pk):
     comment.delete()
     return redirect('articles:detail', article_pk)
     
+
 @login_required
 def like(request, pk):
     
@@ -97,8 +105,11 @@ def like(request, pk):
     if request.user in article.like_users.all():
     # 좋아요 삭제하고 
         article.like_users.remove(request.user)
+        is_liked = False  
     else:
     # 좋아요 추가하고
         article.like_users.add(request.user)
+        is_liked = True
     # 상세페이지로 리다이렉트
-    return redirect('articles:detail', pk)
+    context = {'isLiked': is_liked, 'likeCount': article.like_users.count()}
+    return JsonResponse(context)

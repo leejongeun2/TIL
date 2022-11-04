@@ -55,6 +55,7 @@ def logout(request):
     auth_logout(request) # 요청에 대한 정보, 디비에 저장 된 세션 정보를 날려버리는 행위
     return redirect('articles:index')
 
+@login_required
 def detail(request, pk):
     # user = get_user_model().objects.get(pk=pk)
     user = get_object_or_404(get_user_model(), pk=pk)
@@ -64,18 +65,24 @@ def detail(request, pk):
     return render(request, 'accounts/detail.html', context)
 
 @login_required
-def update(request):
-    if request.method == 'POST':
-        form = CustomUserChangeForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:detail', request.user.pk)
+def update(request, pk):
+    user = get_object_or_404(get_user_model(), pk=pk)
+    if request.user == user:
+        if request.method == 'POST':
+            form = CustomUserChangeForm(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                return redirect('accounts:detail', request.user.pk)
+        else:
+            form = CustomUserChangeForm(instance=request.user)
+        context = {
+            'form': form
+        }
+        return render(request, 'accounts/update.html', context)
     else:
-        form = CustomUserChangeForm(instance=request.user)
-    context = {
-        'form': form
-    }
-    return render(request, 'accounts/update.html', context)
+        messages.warning(request, '해당 계정 사용자만 수정할 수 있습니다.')
+        return redirect('accounts:detail', user.pk)
+
 
 @login_required
 def change_password(request):
