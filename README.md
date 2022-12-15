@@ -353,3 +353,8 @@
 🍒1031(월)-11/7(화)
 * 첫번째 팀 프로젝트
 * 11/7(화) 발표
+* [판매자가 상품을 올릴 수 있는 남성 쇼핑몰 사이트 제작](https://github.com/leejongeun2/Semi-project)
+
+🍒1109(수)-1122(목)
+* 프로젝트에 참여하지 않고 , 개인공부 시간을 통해 Django 와 Front-end학습(with 종은, 주현) 
+* [공부하며 지그재그 사이트 참고하여 실습](https://github.com/leejongeun2/Final-Project-Practice)

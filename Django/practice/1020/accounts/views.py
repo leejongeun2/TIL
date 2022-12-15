@@ -38,7 +38,7 @@ def login(request):
             # 로그인 함수는 request, user객체를 인자로 받음
             # user객체는 form에서 인증 된 유저 정보를 받을 수 있음
             auth_login(request, form.get_user())
-            # http://localhost:8000/accounts/login/?next=/movie/1/update/ # 로그인해야만 글쓰기로 넘어오고 Url로는 못 넘어오게끔 템플릿에서 설정했지만, url로 들어올 수 있음, 막기 위해선 글쓰기 함수위에 @를 해야하고, if를 걸어놔야 하지만 글작성 누르면 next로 들어감, 거기서 로그인하면 인덱스로 리다이렉트 되서, 그럴경우 여기서 글작성으로 리다이렉트할 수 있도록 넘겨줘야함, 그럴 경우 업데이트로 넘어갈 수 있도로 조건문
+            # http://localhost:8000/accounts/login/?next=/movie/1/update/ # 로그인해야만 글쓰기로 넘어오고 Url로는 못 넘어오게끔 템플 릿에서 설정했지만, url로 들어올 수 있음, 막기 위해선 글쓰기 함수위에 @를 해야하고, if를 걸어놔야 하지만 글작성 누르면 next url 주소로 들어감, 거기서 로그인하면 인덱스로 리다이렉트 되서, 그럴경우 여기서 글작성으로 리다이렉트할 수 있도록 넘겨줘야함, 그럴 경우 업데이트로 넘어갈 수 있도로 조건문
             return redirect(request.GET.get('next') or 'articles:index') # 앞에꺼가 트루면 앞에꺼가 실행되고 앞에꺼가 false면 뒤에꺼 실행
             # if request.GET.get('next'): #== /movie/1/update/ request.GET하면 딕셔너리가 나오고 딕셔너리에 next가 있으면 밸류가 따라옴
             #     return redirect(request.GET.get('next'))
